@@ -1,38 +1,41 @@
 package com.gildedrose;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-
 import org.approvaltests.Approvals;
 import org.approvaltests.reporters.DiffReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.junit.jupiter.api.Test;
-import org.w3c.dom.Text;
 
 @UseReporter(DiffReporter.class)
 public class GildedRoseApprovalTest {
 
-	@Test
-	public void foo() {
-
-        Item[] items = new Item[] { new Item("foo", 0, 0) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-
-		Approvals.verifyAll("Items", items);
-	}
-
     @Test
-    public void thirtyDays() {
+	public void should_updateQuality_afterThirtyDays() {
 
-        ByteArrayOutputStream fakeoutput = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(fakeoutput));
-        System.setIn(new ByteArrayInputStream("a\n".getBytes()));
+        Item[] items = new Item[] {
+            new Item("+5 Dexterity Vest", 10, 20),
+            new Item("Aged Brie", 2, 0),
+            new Item("Elixir of the Mongoose", 5, 7),
+            new Item("Sulfuras, Hand of Ragnaros", 0, 80),
+            new Item("Sulfuras, Hand of Ragnaros", -1, 80),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
+            // this conjured item does not work properly yet
+            new Item("Conjured Mana Cake", 3, 6) };
 
-        Program.main();
-        String output = fakeoutput.toString();
+        GildedRose app = new GildedRose(items);
 
-        Approvals.verify(output);
-    }
+        StringBuilder output = new StringBuilder();
+
+        for (int day = 0; day < 31; day++) {
+            output.append("-------- day " + day + " --------\n");
+            output.append("name, sellIn, quality\n");
+            for (Item item : items) {
+                output.append(item.toString()).append("\n");
+            }
+            output.append("\n");
+            app.updateQuality();
+        }
+        Approvals.verify(output.toString());
+	}
 }
