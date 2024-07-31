@@ -59,7 +59,7 @@ class GildedRose {
             }
         }
         else if (isBackstagePass(item)) {
-            item.quality = item.quality - item.quality;
+            item.quality = MIN_QUALITY;
         }
         else if (!isSulfuras(item)) {
             decreaseQuality(item, 1);
