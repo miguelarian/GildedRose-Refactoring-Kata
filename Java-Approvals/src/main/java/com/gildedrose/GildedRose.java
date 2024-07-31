@@ -54,9 +54,7 @@ class GildedRose {
     private static void updateQualityOfExpiredSellInItem(Item item) {
 
         if (isAgedBrie(item)) {
-            if (item.quality < MAX_QUALITY) {
-                increaseQuality(item, 1);
-            }
+            increaseQuality(item, 1);
         }
         else if (isBackstagePass(item)) {
             item.quality = MIN_QUALITY;
@@ -71,7 +69,9 @@ class GildedRose {
     }
 
     private static void increaseQuality(Item item, int increment) {
-        item.quality = item.quality + increment;
+        if (item.quality < MAX_QUALITY) {
+            item.quality = item.quality + increment;
+        }
     }
 
     private static void decreaseSellIn(Item item, int decrement) {
