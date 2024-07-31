@@ -16,7 +16,7 @@ class GildedRose {
             Item item = items[i];
 
             if (isStandardItem(item)) {
-                decreaseQuality(item);
+                decreaseQuality(item, 1);
             } else {
                 if (item.quality < 50) {
                     item.quality = item.quality + 1;
@@ -45,7 +45,7 @@ class GildedRose {
                 if (!isAgedBrie(item)) {
                     if (!isBackstagePass(item)) {
                         if (!isSulfuras(item)) {
-                            decreaseQuality(item);
+                            decreaseQuality(item, 1);
                         }
                     } else {
                         item.quality = item.quality - item.quality;
@@ -59,9 +59,9 @@ class GildedRose {
         }
     }
 
-    private static void decreaseQuality(Item item) {
+    private static void decreaseQuality(Item item, int decrement) {
         if (item.quality > 0) {
-            item.quality = item.quality - 1;
+            item.quality = item.quality - decrement;
         }
     }
 
