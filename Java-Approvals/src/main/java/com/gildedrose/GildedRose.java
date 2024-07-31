@@ -19,18 +19,18 @@ class GildedRose {
                 decreaseQuality(item, 1);
             } else {
                 if (item.quality < 50) {
-                    increaseQuality(item);
+                    increaseQuality(item, 1);
 
                     if (isBackstagePass(item)) {
                         if (item.sellIn < 11) {
                             if (item.quality < 50) {
-                                increaseQuality(item);
+                                increaseQuality(item, 1);
                             }
                         }
 
                         if (item.sellIn < 6) {
                             if (item.quality < 50) {
-                                increaseQuality(item);
+                                increaseQuality(item, 1);
                             }
                         }
                     }
@@ -52,15 +52,15 @@ class GildedRose {
                     }
                 } else {
                     if (item.quality < 50) {
-                        increaseQuality(item);
+                        increaseQuality(item, 1);
                     }
                 }
             }
         }
     }
 
-    private static void increaseQuality(Item item) {
-        item.quality = item.quality + 1;
+    private static void increaseQuality(Item item, int increment) {
+        item.quality = item.quality + increment;
     }
 
     private static void decreaseSellIn(Item item, int decrement) {
