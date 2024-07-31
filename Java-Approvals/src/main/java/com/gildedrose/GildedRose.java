@@ -16,9 +16,7 @@ class GildedRose {
             Item item = items[i];
 
             if (isStandardItem(item)) {
-                if (item.quality > 0) {
-                    item.quality = item.quality - 1;
-                }
+                decreaseQuality(item);
             } else {
                 if (item.quality < 50) {
                     item.quality = item.quality + 1;
@@ -46,10 +44,8 @@ class GildedRose {
             if (item.sellIn < 0) {
                 if (!isAgedBrie(item)) {
                     if (!isBackstagePass(item)) {
-                        if (item.quality > 0) {
-                            if (!isSulfuras(item)) {
-                                item.quality = item.quality - 1;
-                            }
+                        if (!isSulfuras(item)) {
+                            decreaseQuality(item);
                         }
                     } else {
                         item.quality = item.quality - item.quality;
@@ -60,6 +56,12 @@ class GildedRose {
                     }
                 }
             }
+        }
+    }
+
+    private static void decreaseQuality(Item item) {
+        if (item.quality > 0) {
+            item.quality = item.quality - 1;
         }
     }
 
