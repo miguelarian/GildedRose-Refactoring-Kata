@@ -14,13 +14,16 @@ public class GildedRoseApprovalTest {
         StringBuilder output = new StringBuilder();
 
         for (int day = 0; day <= days; day++) {
+            if(day > 0) {
+                app.updateQuality();
+
+            }
             output.append("-------- day " + day + " --------\n");
             output.append("name, sellIn, quality\n");
             for (Item item : items) {
                 output.append(item.toString()).append("\n");
             }
             output.append("\n");
-            app.updateQuality();
         }
         String itemsUpdatedLogs = output.toString();
         return itemsUpdatedLogs;
