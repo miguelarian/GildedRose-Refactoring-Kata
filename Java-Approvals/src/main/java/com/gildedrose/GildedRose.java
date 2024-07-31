@@ -15,7 +15,7 @@ class GildedRose {
         for (int i = 0; i < items.length; i++) {
             Item item = items[i];
 
-            if (!isAgedBrie(item) && !isBackstagePass(item) && !isSulfuras(item)) {
+            if (isStandardItem(item)) {
                 if (item.quality > 0) {
                     item.quality = item.quality - 1;
                 }
@@ -61,6 +61,10 @@ class GildedRose {
                 }
             }
         }
+    }
+
+    private static boolean isStandardItem(Item item) {
+        return !isAgedBrie(item) && !isBackstagePass(item) && !isSulfuras(item);
     }
 
     private static boolean isSulfuras(Item item) {
