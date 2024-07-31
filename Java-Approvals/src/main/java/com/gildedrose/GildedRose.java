@@ -15,11 +15,9 @@ class GildedRose {
         for (int i = 0; i < items.length; i++) {
             Item item = items[i];
 
-            if (!isAgedBrie(item) && !isBackstagePass(item)) {
+            if (!isAgedBrie(item) && !isBackstagePass(item) && !isSulfuras(item)) {
                 if (item.quality > 0) {
-                    if (!isSulfuras(item)) {
-                        item.quality = item.quality - 1;
-                    }
+                    item.quality = item.quality - 1;
                 }
             } else {
                 if (item.quality < 50) {
