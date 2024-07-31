@@ -18,25 +18,29 @@ class GildedRose {
             if (isStandardItem(item)) {
                 decreaseQuality(item, 1);
             } else {
-                if (item.quality < 50) {
-                    increaseQuality(item, 1);
-
-                    if (isBackstagePass(item)) {
-                        if (item.sellIn < 11 && item.quality < 50) {
-                            increaseQuality(item, 1);
-                        }
-
-                        if (item.sellIn < 6 && item.quality < 50) {
-                            increaseQuality(item, 1);
-                        }
-                    }
-                }
+                increaseQuality(item);
             }
 
             decreaseSellIn(item, 1);
 
             if (isSellInExpired(item)) {
                 updateQualityOfExpiredSellInItem(item);
+            }
+        }
+    }
+
+    private static void increaseQuality(Item item) {
+        if (item.quality < 50) {
+            increaseQuality(item, 1);
+
+            if (isBackstagePass(item)) {
+                if (item.sellIn < 11 && item.quality < 50) {
+                    increaseQuality(item, 1);
+                }
+
+                if (item.sellIn < 6 && item.quality < 50) {
+                    increaseQuality(item, 1);
+                }
             }
         }
     }
