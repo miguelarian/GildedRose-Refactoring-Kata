@@ -5,6 +5,7 @@ class GildedRose {
     public static final String BACKSTAGE_PASS = "Backstage passes to a TAFKAL80ETC concert";
     public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
     public static final int MAX_QUALITY = 50;
+    public static final int MIN_QUALITY = 0;
 
     Item[] items;
 
@@ -13,7 +14,7 @@ class GildedRose {
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
+        for (int i = MIN_QUALITY; i < items.length; i++) {
             Item item = items[i];
 
             if (isStandardItem(item)) {
@@ -67,7 +68,7 @@ class GildedRose {
     }
 
     private static boolean isSellInExpired(Item item) {
-        return item.sellIn < 0;
+        return item.sellIn < MIN_QUALITY;
     }
 
     private static void increaseQuality(Item item, int increment) {
@@ -83,7 +84,7 @@ class GildedRose {
     }
 
     private static void decreaseQuality(Item item, int decrement) {
-        if (item.quality > 0) {
+        if (item.quality > MIN_QUALITY) {
             item.quality = item.quality - decrement;
         }
     }
