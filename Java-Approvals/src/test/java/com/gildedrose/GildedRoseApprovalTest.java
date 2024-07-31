@@ -97,7 +97,7 @@ public class GildedRoseApprovalTest {
 
         String itemsUpdatedLogs = getItemsUpdatedLogs(items, app, 3);
 
-        assertEquals(13, items[0].quality, "The quality of item should not be less than 0");
+        assertEquals(13, items[0].quality, "The quality twice fast when sell in expires");
         Approvals.verify(itemsUpdatedLogs);
     }
 }
