@@ -100,4 +100,17 @@ public class GildedRoseApprovalTest {
         assertEquals(13, items[0].quality, "The quality twice fast when sell in expires");
         Approvals.verify(itemsUpdatedLogs);
     }
+
+    @Test
+    public void should_sulfurasQualityNeverDecrease() {
+        Item[] items = new Item[] {
+            new Item("Sulfuras, Hand of Ragnaros", 10, 80),
+        };
+        GildedRose app = new GildedRose(items);
+
+        String itemsUpdatedLogs = getItemsUpdatedLogs(items, app, 1);
+
+        assertEquals(80, items[0].quality, "The quality of Sulfuras should never decrease");
+        Approvals.verify(itemsUpdatedLogs);
+    }
 }
