@@ -1,0 +1,4 @@
+-------- day 1 --------
+name, sellIn, quality
+Aged Brie, 1, 50
+

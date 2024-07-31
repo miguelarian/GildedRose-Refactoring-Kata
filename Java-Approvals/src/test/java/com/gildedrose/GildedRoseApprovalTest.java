@@ -5,8 +5,26 @@ import org.approvaltests.reporters.DiffReporter;
 import org.approvaltests.reporters.UseReporter;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @UseReporter(DiffReporter.class)
 public class GildedRoseApprovalTest {
+
+    private static String getItemsUpdatedLogs(Item[] items, GildedRose app, int days) {
+        StringBuilder output = new StringBuilder();
+
+        for (int day = 1; day <= days; day++) {
+            output.append("-------- day " + day + " --------\n");
+            output.append("name, sellIn, quality\n");
+            for (Item item : items) {
+                output.append(item.toString()).append("\n");
+            }
+            output.append("\n");
+            app.updateQuality();
+        }
+        String itemsUpdatedLogs = output.toString();
+        return itemsUpdatedLogs;
+    }
 
     @Test
 	public void should_updateQuality_afterThirtyDays() {
@@ -25,17 +43,35 @@ public class GildedRoseApprovalTest {
 
         GildedRose app = new GildedRose(items);
 
-        StringBuilder output = new StringBuilder();
+        String itemsUpdatedLogs = getItemsUpdatedLogs(items, app, 30);
 
-        for (int day = 0; day < 31; day++) {
-            output.append("-------- day " + day + " --------\n");
-            output.append("name, sellIn, quality\n");
-            for (Item item : items) {
-                output.append(item.toString()).append("\n");
-            }
-            output.append("\n");
-            app.updateQuality();
-        }
-        Approvals.verify(output.toString());
+        Approvals.verify(itemsUpdatedLogs);
 	}
+
+    @Test
+    public void should_increaseQualityOnePerDay_forAgedBrie() {
+        Item[] items = new Item[] {
+            new Item("Aged Brie", 50 ,1)
+        };
+
+        GildedRose app = new GildedRose(items);
+
+        String itemsUpdatedLogs = getItemsUpdatedLogs(items, app, 10);
+
+        assertEquals(11, items[0].quality, "The quality of Aged Brie is not 50 after 50 days");
+        Approvals.verify(itemsUpdatedLogs);
+    }
+
+    @Test
+    public void should_qualityNotIncreaseAbove50_forAgedBrie() {
+        Item[] items = new Item[] {
+            new Item("Aged Brie", 1, 50)
+        };
+        GildedRose app = new GildedRose(items);
+
+        String itemsUpdatedLogs = getItemsUpdatedLogs(items, app, 1);
+
+        assertEquals(50, items[0].quality, "The quality of Aged Brie should not exceed 50");
+        Approvals.verify(itemsUpdatedLogs);
+    }
 }
