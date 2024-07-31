@@ -30,17 +30,20 @@ class GildedRose {
     }
 
     private static void increaseQuality(Item item) {
-        if (item.quality < 50) {
-            increaseQuality(item, 1);
 
-            if (isBackstagePass(item)) {
-                if (item.sellIn < 11 && item.quality < 50) {
-                    increaseQuality(item, 1);
-                }
+        if (item.quality >= 50) {
+            return;
+        }
 
-                if (item.sellIn < 6 && item.quality < 50) {
-                    increaseQuality(item, 1);
-                }
+        increaseQuality(item, 1);
+
+        if (isBackstagePass(item)) {
+            if (item.sellIn < 11 && item.quality < 50) {
+                increaseQuality(item, 1);
+            }
+
+            if (item.sellIn < 6 && item.quality < 50) {
+                increaseQuality(item, 1);
             }
         }
     }
