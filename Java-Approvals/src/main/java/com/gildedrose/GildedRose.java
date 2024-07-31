@@ -36,19 +36,23 @@ class GildedRose {
             decreaseSellIn(item, 1);
 
             if (isSellInExpired(item)) {
-                if (!isAgedBrie(item)) {
-                    if (!isBackstagePass(item)) {
-                        if (!isSulfuras(item)) {
-                            decreaseQuality(item, 1);
-                        }
-                    } else {
-                        item.quality = item.quality - item.quality;
-                    }
-                } else {
-                    if (item.quality < 50) {
-                        increaseQuality(item, 1);
-                    }
+                updateQualityOfExpiredSellInItem(item);
+            }
+        }
+    }
+
+    private static void updateQualityOfExpiredSellInItem(Item item) {
+        if (!isAgedBrie(item)) {
+            if (!isBackstagePass(item)) {
+                if (!isSulfuras(item)) {
+                    decreaseQuality(item, 1);
                 }
+            } else {
+                item.quality = item.quality - item.quality;
+            }
+        } else {
+            if (item.quality < 50) {
+                increaseQuality(item, 1);
             }
         }
     }
