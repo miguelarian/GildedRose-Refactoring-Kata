@@ -142,4 +142,17 @@ public class GildedRoseApprovalTest {
         assertEquals(13, items[0].quality, "The quality of Backstage passes should increase by 3 when expiration is between 0 and 5");
         Approvals.verify(itemsUpdatedLogs);
     }
+
+    @Test
+    public void shoud_backstagePassSetQualityTo0_whenConcertPasses() {
+        Item[] items = new Item[] {
+            new Item("Backstage passes to a TAFKAL80ETC concert", 1, 10),
+        };
+        GildedRose app = new GildedRose(items);
+
+        String itemsUpdatedLogs = getItemsUpdatedLogs(items, app, 2);
+
+        assertEquals(0, items[0].quality, "The quality of Backstage passes should decrease to 0 when the concert is passed");
+        Approvals.verify(itemsUpdatedLogs);
+    }
 }
