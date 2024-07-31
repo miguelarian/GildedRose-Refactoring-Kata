@@ -13,7 +13,7 @@ public class GildedRoseApprovalTest {
     private static String getItemsUpdatedLogs(Item[] items, GildedRose app, int days) {
         StringBuilder output = new StringBuilder();
 
-        for (int day = 1; day <= days; day++) {
+        for (int day = 0; day <= days; day++) {
             output.append("-------- day " + day + " --------\n");
             output.append("name, sellIn, quality\n");
             for (Item item : items) {
