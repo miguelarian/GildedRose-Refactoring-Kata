@@ -14,7 +14,7 @@ class GildedRose {
     }
 
     public void updateQuality() {
-        for (int i = MIN_QUALITY; i < items.length; i++) {
+        for (int i = 0; i < items.length; i++) {
             Item item = items[i];
 
             if (isStandardItem(item)) {
@@ -68,7 +68,7 @@ class GildedRose {
     }
 
     private static boolean isSellInExpired(Item item) {
-        return item.sellIn < MIN_QUALITY;
+        return item.sellIn < 0;
     }
 
     private static void increaseQuality(Item item, int increment) {
