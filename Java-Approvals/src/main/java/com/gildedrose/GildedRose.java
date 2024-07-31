@@ -43,11 +43,11 @@ class GildedRose {
         increaseQuality(item, 1);
 
         if (isBackstagePass(item)) {
-            if (item.sellIn < BACKSTAGEPASS_X2_MAX_DAYS && item.quality < MAX_QUALITY) {
+            if (item.sellIn < BACKSTAGEPASS_X2_MAX_DAYS) {
                 increaseQuality(item, 1);
             }
 
-            if (item.sellIn < BACKSTAGEPASS_X3_MAX_DAYS && item.quality < MAX_QUALITY) {
+            if (item.sellIn < BACKSTAGEPASS_X3_MAX_DAYS) {
                 increaseQuality(item, 1);
             }
         }
