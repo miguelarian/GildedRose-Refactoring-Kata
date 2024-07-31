@@ -52,18 +52,17 @@ class GildedRose {
     }
 
     private static void updateQualityOfExpiredSellInItem(Item item) {
-        if (!isAgedBrie(item)) {
-            if (!isBackstagePass(item)) {
-                if (!isSulfuras(item)) {
-                    decreaseQuality(item, 1);
-                }
-            } else {
-                item.quality = item.quality - item.quality;
-            }
-        } else {
+
+        if (isAgedBrie(item)) {
             if (item.quality < MAX_QUALITY) {
                 increaseQuality(item, 1);
             }
+        }
+        else if (isBackstagePass(item)) {
+            item.quality = item.quality - item.quality;
+        }
+        else if (!isSulfuras(item)) {
+            decreaseQuality(item, 1);
         }
     }
 
