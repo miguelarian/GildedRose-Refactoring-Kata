@@ -15,10 +15,9 @@ class GildedRose {
         for (int i = 0; i < items.length; i++) {
             Item item = items[i];
 
-            if (!item.name.equals(AGED_BRIE)
-                    && !item.name.equals(BACKSTAGE_PASS)) {
+            if (!isAgedBrie(item) && !isBackstagePass(item)) {
                 if (item.quality > 0) {
-                    if (!item.name.equals(SULFURAS)) {
+                    if (!isSulfuras(item)) {
                         item.quality = item.quality - 1;
                     }
                 }
@@ -26,7 +25,7 @@ class GildedRose {
                 if (item.quality < 50) {
                     item.quality = item.quality + 1;
 
-                    if (item.name.equals(BACKSTAGE_PASS)) {
+                    if (isBackstagePass(item)) {
                         if (item.sellIn < 11) {
                             if (item.quality < 50) {
                                 item.quality = item.quality + 1;
@@ -42,15 +41,15 @@ class GildedRose {
                 }
             }
 
-            if (!item.name.equals(SULFURAS)) {
+            if (!isSulfuras(item)) {
                 item.sellIn = item.sellIn - 1;
             }
 
             if (item.sellIn < 0) {
-                if (!item.name.equals(AGED_BRIE)) {
-                    if (!item.name.equals(BACKSTAGE_PASS)) {
+                if (!isAgedBrie(item)) {
+                    if (!isBackstagePass(item)) {
                         if (item.quality > 0) {
-                            if (!item.name.equals(SULFURAS)) {
+                            if (!isSulfuras(item)) {
                                 item.quality = item.quality - 1;
                             }
                         }
@@ -64,5 +63,17 @@ class GildedRose {
                 }
             }
         }
+    }
+
+    private static boolean isSulfuras(Item item) {
+        return item.name.equals(SULFURAS);
+    }
+
+    private static boolean isBackstagePass(Item item) {
+        return item.name.equals(BACKSTAGE_PASS);
+    }
+
+    private static boolean isAgedBrie(Item item) {
+        return item.name.equals(AGED_BRIE);
     }
 }
