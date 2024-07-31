@@ -4,6 +4,7 @@ class GildedRose {
     public static final String AGED_BRIE = "Aged Brie";
     public static final String BACKSTAGE_PASS = "Backstage passes to a TAFKAL80ETC concert";
     public static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+    public static final int MAX_QUALITY = 50;
 
     Item[] items;
 
@@ -31,18 +32,18 @@ class GildedRose {
 
     private static void increaseQuality(Item item) {
 
-        if (item.quality >= 50) {
+        if (item.quality >= MAX_QUALITY) {
             return;
         }
 
         increaseQuality(item, 1);
 
         if (isBackstagePass(item)) {
-            if (item.sellIn < 11 && item.quality < 50) {
+            if (item.sellIn < 11 && item.quality < MAX_QUALITY) {
                 increaseQuality(item, 1);
             }
 
-            if (item.sellIn < 6 && item.quality < 50) {
+            if (item.sellIn < 6 && item.quality < MAX_QUALITY) {
                 increaseQuality(item, 1);
             }
         }
@@ -58,7 +59,7 @@ class GildedRose {
                 item.quality = item.quality - item.quality;
             }
         } else {
-            if (item.quality < 50) {
+            if (item.quality < MAX_QUALITY) {
                 increaseQuality(item, 1);
             }
         }
