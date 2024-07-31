@@ -38,7 +38,7 @@ class GildedRose {
             }
 
             if (!isSulfuras(item)) {
-                item.sellIn = item.sellIn - 1;
+                decreaseSellIn(item);
             }
 
             if (item.sellIn < 0) {
@@ -57,6 +57,10 @@ class GildedRose {
                 }
             }
         }
+    }
+
+    private static void decreaseSellIn(Item item) {
+        item.sellIn = item.sellIn - 1;
     }
 
     private static void decreaseQuality(Item item, int decrement) {
