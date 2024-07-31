@@ -1,0 +1,12 @@
+-------- day 0 --------
+name, sellIn, quality
+Elixir of the Mongoose, 1, 20
+
+-------- day 1 --------
+name, sellIn, quality
+Elixir of the Mongoose, 0, 19
+
+-------- day 2 --------
+name, sellIn, quality
+Elixir of the Mongoose, -1, 17
+

@@ -87,4 +87,17 @@ public class GildedRoseApprovalTest {
         assertEquals(0, items[0].quality, "The quality of item should not be less than 0");
         Approvals.verify(itemsUpdatedLogs);
     }
+
+    @Test
+    public void should_qualityDecreaseTwiceFastWhenSellInExpires_forStandardItems() {
+        Item[] items = new Item[] {
+            new Item("Elixir of the Mongoose", 1, 20),
+        };
+        GildedRose app = new GildedRose(items);
+
+        String itemsUpdatedLogs = getItemsUpdatedLogs(items, app, 3);
+
+        assertEquals(15, items[0].quality, "The quality of item should not be less than 0");
+        Approvals.verify(itemsUpdatedLogs);
+    }
 }
