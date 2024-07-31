@@ -58,7 +58,7 @@ public class GildedRoseApprovalTest {
 
         String itemsUpdatedLogs = getItemsUpdatedLogs(items, app, 10);
 
-        assertEquals(11, items[0].quality, "The quality of Aged Brie is not 50 after 50 days");
+        assertEquals(12, items[0].quality, "The quality of Aged Brie is not 50 after 50 days");
         Approvals.verify(itemsUpdatedLogs);
     }
 
@@ -97,7 +97,7 @@ public class GildedRoseApprovalTest {
 
         String itemsUpdatedLogs = getItemsUpdatedLogs(items, app, 3);
 
-        assertEquals(15, items[0].quality, "The quality of item should not be less than 0");
+        assertEquals(13, items[0].quality, "The quality of item should not be less than 0");
         Approvals.verify(itemsUpdatedLogs);
     }
 }

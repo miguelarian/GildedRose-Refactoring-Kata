@@ -38,3 +38,7 @@ Aged Brie, 42, 9
 name, sellIn, quality
 Aged Brie, 41, 10
 
+-------- day 10 --------
+name, sellIn, quality
+Aged Brie, 40, 11
+

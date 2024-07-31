@@ -10,3 +10,7 @@ Elixir of the Mongoose, 0, 19
 name, sellIn, quality
 Elixir of the Mongoose, -1, 17
 
+-------- day 3 --------
+name, sellIn, quality
+Elixir of the Mongoose, -2, 15
+
