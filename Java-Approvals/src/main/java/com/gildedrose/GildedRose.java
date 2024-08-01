@@ -4,6 +4,7 @@ class GildedRose {
     private static final String AGED_BRIE = "Aged Brie";
     private static final String BACKSTAGE_PASS = "Backstage passes to a TAFKAL80ETC concert";
     private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+    private static final String CONJURED = "Conjured Mana Cake";
     private static final int MAX_QUALITY = 50;
     private static final int MIN_QUALITY = 0;
     private static final int BACKSTAGEPASS_X3_MAX_DAYS = 6;
@@ -21,6 +22,9 @@ class GildedRose {
 
             if (isStandardItem(item)) {
                 decreaseQuality(item, 1);
+            }
+            if (isConjured(item)) {
+                decreaseQuality(item, 2);
             }
             if (isQualityIncreasedPerDayItem(item)) {
                 increaseQuality(item);
@@ -64,6 +68,9 @@ class GildedRose {
         else if (isStandardItem(item)) {
             decreaseQuality(item, 1);
         }
+        else if (isConjured(item)) {
+            decreaseQuality(item, 2);
+        }
     }
 
     private static boolean isExpired(Item item) {
@@ -91,7 +98,7 @@ class GildedRose {
     }
 
     private static boolean isStandardItem(Item item) {
-        return !isAgedBrie(item) && !isBackstagePass(item) && !isSulfuras(item);
+        return !isAgedBrie(item) && !isBackstagePass(item) && !isSulfuras(item) && !isConjured(item);
     }
 
     private static boolean isQualityIncreasedPerDayItem(Item item) {
@@ -108,5 +115,9 @@ class GildedRose {
 
     private static boolean isAgedBrie(Item item) {
         return item.name.equals(AGED_BRIE);
+    }
+
+    private static boolean isConjured(Item item) {
+        return item.name.equals(CONJURED);
     }
 }

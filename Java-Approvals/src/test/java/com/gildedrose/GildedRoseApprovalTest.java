@@ -41,7 +41,6 @@ public class GildedRoseApprovalTest {
             new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
             new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
             new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
-            // this conjured item does not work properly yet
             new Item("Conjured Mana Cake", 3, 6) };
 
         GildedRose app = new GildedRose(items);
@@ -166,6 +165,32 @@ public class GildedRoseApprovalTest {
         String itemsUpdatedLogs = getItemsUpdatedLogs(items, app, 2);
 
         assertEquals(0, items[0].quality, "The quality of Backstage passes should decrease to 0 when the concert is passed");
+        Approvals.verify(itemsUpdatedLogs);
+    }
+
+    @Test
+    public void should_conjuredItemDegradeTwiceFast() {
+        Item[] items = new Item[] {
+            new Item("Conjured Mana Cake", 3, 6)
+        };
+        GildedRose app = new GildedRose(items);
+
+        String itemsUpdatedLogs = getItemsUpdatedLogs(items, app, 3);
+
+        assertEquals(0, items[0].quality, "The quality of the Conjured item should be 0");
+        Approvals.verify(itemsUpdatedLogs);
+    }
+
+    @Test
+    public void should_conjuredItemExpiredDegradeTwiceTwiceFast() {
+        Item[] items = new Item[] {
+            new Item("Conjured Mana Cake", 2, 10)
+        };
+        GildedRose app = new GildedRose(items);
+
+        String itemsUpdatedLogs = getItemsUpdatedLogs(items, app, 3);
+
+        assertEquals(2, items[0].quality, "The quality of the Conjured item should be 0");
         Approvals.verify(itemsUpdatedLogs);
     }
 }

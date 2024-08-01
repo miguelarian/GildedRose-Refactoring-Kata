@@ -1,0 +1,16 @@
+-------- day 0 --------
+name, sellIn, quality
+Conjured Mana Cake, 2, 10
+
+-------- day 1 --------
+name, sellIn, quality
+Conjured Mana Cake, 1, 8
+
+-------- day 2 --------
+name, sellIn, quality
+Conjured Mana Cake, 0, 6
+
+-------- day 3 --------
+name, sellIn, quality
+Conjured Mana Cake, -1, 2
+
