@@ -23,14 +23,16 @@ class GildedRose {
     }
 
     private static void update(Item item) {
-        if (isStandardItem(item)) {
-            decreaseQuality(item, 1);
-        }
         if (isConjured(item)) {
             decreaseQuality(item, 2);
         }
-        if (isQualityIncreasedPerDayItem(item)) {
+        else if (isAgedBrie(item) || isBackstagePass(item)) {
             increaseQuality(item);
+        } else if (isSulfuras(item)) {
+            return;
+        }
+        else {
+            decreaseQuality(item, 1);
         }
 
         decreaseSellIn(item, 1);
@@ -60,18 +62,20 @@ class GildedRose {
     }
 
     private static void updateQualityOfExpiredSellInItem(Item item) {
-
         if (isAgedBrie(item)) {
             increaseQuality(item, 1);
         }
         else if (isBackstagePass(item)) {
             item.quality = MIN_QUALITY;
         }
-        else if (isStandardItem(item)) {
-            decreaseQuality(item, 1);
-        }
         else if (isConjured(item)) {
             decreaseQuality(item, 2);
+        }
+        else if (isSulfuras(item)) {
+            return;
+        }
+        else {
+            decreaseQuality(item, 1);
         }
     }
 
@@ -97,14 +101,6 @@ class GildedRose {
         if (item.quality > MIN_QUALITY) {
             item.quality = item.quality - decrement;
         }
-    }
-
-    private static boolean isStandardItem(Item item) {
-        return !isAgedBrie(item) && !isBackstagePass(item) && !isSulfuras(item) && !isConjured(item);
-    }
-
-    private static boolean isQualityIncreasedPerDayItem(Item item) {
-        return isAgedBrie(item) || isBackstagePass(item);
     }
 
     private static boolean isSulfuras(Item item) {
