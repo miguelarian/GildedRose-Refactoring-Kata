@@ -28,7 +28,7 @@ class GildedRose {
 
             decreaseSellIn(item, 1);
 
-            if (isSellInExpired(item)) {
+            if (isExpired(item)) {
                 updateQualityOfExpiredSellInItem(item);
             }
         }
@@ -66,7 +66,7 @@ class GildedRose {
         }
     }
 
-    private static boolean isSellInExpired(Item item) {
+    private static boolean isExpired(Item item) {
         return item.sellIn < 0;
     }
 
