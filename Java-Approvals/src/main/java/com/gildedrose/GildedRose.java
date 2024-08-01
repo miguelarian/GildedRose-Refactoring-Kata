@@ -26,9 +26,13 @@ class GildedRose {
         if (isConjured(item)) {
             decreaseQuality(item, 2);
         }
-        else if (isAgedBrie(item) || isBackstagePass(item)) {
+        else if (isAgedBrie(item)) {
             increaseQuality(item);
-        } else if (isSulfuras(item)) {
+        }
+        else if (isBackstagePass(item)) {
+            increaseQuality(item);
+        }
+        else if (isSulfuras(item)) {
             return;
         }
         else {
