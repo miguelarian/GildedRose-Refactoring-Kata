@@ -27,10 +27,10 @@ class GildedRose {
             decreaseQuality(item, 2);
         }
         else if (isAgedBrie(item)) {
-            increaseQuality(item);
+            increaseQuality(item, 1);
         }
         else if (isBackstagePass(item)) {
-            increaseQuality(item);
+            increaseBackstagePassQuality(item);
         }
         else if (isSulfuras(item)) {
             return;
@@ -46,22 +46,16 @@ class GildedRose {
         }
     }
 
-    private static void increaseQuality(Item item) {
-
-        if (item.quality >= MAX_QUALITY) {
-            return;
-        }
+    private static void increaseBackstagePassQuality(Item item) {
 
         increaseQuality(item, 1);
 
-        if (isBackstagePass(item)) {
-            if (item.sellIn < BACKSTAGEPASS_X2_MAX_DAYS) {
-                increaseQuality(item, 1);
-            }
+        if (item.sellIn < BACKSTAGEPASS_X2_MAX_DAYS) {
+            increaseQuality(item, 1);
+        }
 
-            if (item.sellIn < BACKSTAGEPASS_X3_MAX_DAYS) {
-                increaseQuality(item, 1);
-            }
+        if (item.sellIn < BACKSTAGEPASS_X3_MAX_DAYS) {
+            increaseQuality(item, 1);
         }
     }
 
