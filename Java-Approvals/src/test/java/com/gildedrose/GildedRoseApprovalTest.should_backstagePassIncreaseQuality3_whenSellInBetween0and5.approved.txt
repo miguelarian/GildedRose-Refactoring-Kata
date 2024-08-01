@@ -1,0 +1,8 @@
+-------- day 0 --------
+name, sellIn, quality
+Backstage passes to a TAFKAL80ETC concert, 5, 10
+
+-------- day 1 --------
+name, sellIn, quality
+Backstage passes to a TAFKAL80ETC concert, 4, 13
+
