@@ -10,7 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @UseReporter(DiffReporter.class)
 public class GildedRoseApprovalTest {
 
-    private static String getItemsUpdatedLogsAfterDays(Item[] items, GildedRose app, int days) {
+    private static String getItemsUpdatedLogsAfterDays(Item[] items, int days) {
+        GildedRose app = new GildedRose(items);
         StringBuilder output = new StringBuilder();
 
         for (int day = 0; day <= days; day++) {
@@ -43,9 +44,7 @@ public class GildedRoseApprovalTest {
             new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
             new Item("Conjured Mana Cake", 3, 6) };
 
-        GildedRose app = new GildedRose(items);
-
-        Approvals.verify(getItemsUpdatedLogsAfterDays(items, app, 30));
+        Approvals.verify(getItemsUpdatedLogsAfterDays(items, 30));
 	}
 
     @Test
@@ -54,9 +53,7 @@ public class GildedRoseApprovalTest {
             new Item("Aged Brie", 50 ,1)
         };
 
-        GildedRose app = new GildedRose(items);
-
-        Approvals.verify(getItemsUpdatedLogsAfterDays(items, app, 10));
+        Approvals.verify(getItemsUpdatedLogsAfterDays(items, 10));
         assertEquals(11, items[0].quality, "The quality of Aged Brie is not 50 after 50 days");
     }
 
@@ -65,9 +62,8 @@ public class GildedRoseApprovalTest {
         Item[] items = new Item[] {
             new Item("Aged Brie", 1, 50)
         };
-        GildedRose app = new GildedRose(items);
 
-        Approvals.verify(getItemsUpdatedLogsAfterDays(items, app, 1));
+        Approvals.verify(getItemsUpdatedLogsAfterDays(items, 1));
         assertEquals(50, items[0].quality, "The quality of Aged Brie should not exceed 50");
     }
 
@@ -76,9 +72,8 @@ public class GildedRoseApprovalTest {
         Item[] items = new Item[] {
             new Item("Elixir of the Mongoose", 10, 1),
         };
-        GildedRose app = new GildedRose(items);
 
-        Approvals.verify(getItemsUpdatedLogsAfterDays(items, app, 3));
+        Approvals.verify(getItemsUpdatedLogsAfterDays(items,3));
         assertEquals(0, items[0].quality, "The quality of item should not be less than 0");
     }
 
@@ -87,9 +82,8 @@ public class GildedRoseApprovalTest {
         Item[] items = new Item[] {
             new Item("Elixir of the Mongoose", 1, 20),
         };
-        GildedRose app = new GildedRose(items);
 
-        Approvals.verify(getItemsUpdatedLogsAfterDays(items, app, 3));
+        Approvals.verify(getItemsUpdatedLogsAfterDays(items, 3));
         assertEquals(15, items[0].quality, "The quality twice fast when sell in expires");
     }
 
@@ -98,9 +92,8 @@ public class GildedRoseApprovalTest {
         Item[] items = new Item[] {
             new Item("Sulfuras, Hand of Ragnaros", 10, 80),
         };
-        GildedRose app = new GildedRose(items);
 
-        Approvals.verify(getItemsUpdatedLogsAfterDays(items, app, 1));
+        Approvals.verify(getItemsUpdatedLogsAfterDays(items, 1));
         assertEquals(80, items[0].quality, "The quality of Sulfuras should never decrease");
     }
 
@@ -109,9 +102,8 @@ public class GildedRoseApprovalTest {
         Item[] items = new Item[] {
             new Item("Backstage passes to a TAFKAL80ETC concert", 10, 10),
         };
-        GildedRose app = new GildedRose(items);
 
-        Approvals.verify(getItemsUpdatedLogsAfterDays(items, app, 1));
+        Approvals.verify(getItemsUpdatedLogsAfterDays(items, 1));
         assertEquals(12, items[0].quality, "The quality of Backstage passes should increase by 2 when expiration is between 5 and 10");
     }
 
@@ -120,9 +112,8 @@ public class GildedRoseApprovalTest {
         Item[] items = new Item[] {
             new Item("Backstage passes to a TAFKAL80ETC concert", 5, 10),
         };
-        GildedRose app = new GildedRose(items);
 
-        Approvals.verify(getItemsUpdatedLogsAfterDays(items, app, 1));
+        Approvals.verify(getItemsUpdatedLogsAfterDays(items, 1));
         assertEquals(13, items[0].quality, "The quality of Backstage passes should increase by 3 when expiration is between 0 and 5");
     }
 
@@ -131,9 +122,8 @@ public class GildedRoseApprovalTest {
         Item[] items = new Item[] {
             new Item("Backstage passes to a TAFKAL80ETC concert", 11, 10),
         };
-        GildedRose app = new GildedRose(items);
 
-        Approvals.verify(getItemsUpdatedLogsAfterDays(items, app, 1));
+        Approvals.verify(getItemsUpdatedLogsAfterDays(items, 1));
         assertEquals(11, items[0].quality, "The quality of Backstage passes should increase by 1 when expiration is above 10");
     }
 
@@ -142,9 +132,8 @@ public class GildedRoseApprovalTest {
         Item[] items = new Item[] {
             new Item("Backstage passes to a TAFKAL80ETC concert", 1, 10),
         };
-        GildedRose app = new GildedRose(items);
 
-        Approvals.verify(getItemsUpdatedLogsAfterDays(items, app, 2));
+        Approvals.verify(getItemsUpdatedLogsAfterDays(items, 2));
         assertEquals(0, items[0].quality, "The quality of Backstage passes should decrease to 0 when the concert is passed");
     }
 
@@ -153,9 +142,8 @@ public class GildedRoseApprovalTest {
         Item[] items = new Item[] {
             new Item("Conjured Mana Cake", 3, 6)
         };
-        GildedRose app = new GildedRose(items);
 
-        Approvals.verify(getItemsUpdatedLogsAfterDays(items, app, 3));
+        Approvals.verify(getItemsUpdatedLogsAfterDays(items, 3));
         assertEquals(0, items[0].quality, "The quality of the Conjured item should be 0");
     }
 
@@ -164,9 +152,8 @@ public class GildedRoseApprovalTest {
         Item[] items = new Item[] {
             new Item("Conjured Mana Cake", 2, 10)
         };
-        GildedRose app = new GildedRose(items);
 
-        Approvals.verify(getItemsUpdatedLogsAfterDays(items, app, 3));
+        Approvals.verify(getItemsUpdatedLogsAfterDays(items, 3));
         assertEquals(2, items[0].quality, "The quality of the Conjured item should be 0");
     }
 }
