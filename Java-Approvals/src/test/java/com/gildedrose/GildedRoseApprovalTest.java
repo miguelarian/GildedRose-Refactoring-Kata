@@ -117,7 +117,7 @@ public class GildedRoseApprovalTest {
     }
 
     @Test
-    public void shoud_backstagePassIncreaseQuality2_whenSellInBetween10and5() {
+    public void should_backstagePassIncreaseQuality2_whenSellInBetween10and5() {
         Item[] items = new Item[] {
             new Item("Backstage passes to a TAFKAL80ETC concert", 10, 10),
         };
@@ -130,7 +130,7 @@ public class GildedRoseApprovalTest {
     }
 
     @Test
-    public void shoud_backstagePassIncreaseQuality3_whenSellInBetween0and5() {
+    public void should_backstagePassIncreaseQuality3_whenSellInBetween0and5() {
         Item[] items = new Item[] {
             new Item("Backstage passes to a TAFKAL80ETC concert", 5, 10),
         };
@@ -143,7 +143,7 @@ public class GildedRoseApprovalTest {
     }
 
     @Test
-    public void shoud_backstagePassIncreaseQuality1_whenSellInAbove10() {
+    public void should_backstagePassIncreaseQuality1_whenSellInAbove10() {
         Item[] items = new Item[] {
             new Item("Backstage passes to a TAFKAL80ETC concert", 11, 10),
         };
@@ -156,7 +156,7 @@ public class GildedRoseApprovalTest {
     }
 
     @Test
-    public void shoud_backstagePassSetQualityTo0_whenConcertPasses() {
+    public void should_backstagePassSetQualityTo0_whenConcertPasses() {
         Item[] items = new Item[] {
             new Item("Backstage passes to a TAFKAL80ETC concert", 1, 10),
         };
