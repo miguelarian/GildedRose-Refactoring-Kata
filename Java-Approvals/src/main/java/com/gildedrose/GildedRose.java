@@ -22,7 +22,7 @@ class GildedRose {
             if (isStandardItem(item)) {
                 decreaseQuality(item, 1);
             }
-            if (isQualityItemIncreasedPerDayItem(item)) {
+            if (isQualityIncreasedPerDayItem(item)) {
                 increaseQuality(item);
             }
 
@@ -94,7 +94,7 @@ class GildedRose {
         return !isAgedBrie(item) && !isBackstagePass(item) && !isSulfuras(item);
     }
 
-    private static boolean isQualityItemIncreasedPerDayItem(Item item) {
+    private static boolean isQualityIncreasedPerDayItem(Item item) {
         return isAgedBrie(item) || isBackstagePass(item);
     }
 
