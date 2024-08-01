@@ -18,23 +18,25 @@ class GildedRose {
 
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
-            Item item = items[i];
+            update(items[i]);
+        }
+    }
 
-            if (isStandardItem(item)) {
-                decreaseQuality(item, 1);
-            }
-            if (isConjured(item)) {
-                decreaseQuality(item, 2);
-            }
-            if (isQualityIncreasedPerDayItem(item)) {
-                increaseQuality(item);
-            }
+    private static void update(Item item) {
+        if (isStandardItem(item)) {
+            decreaseQuality(item, 1);
+        }
+        if (isConjured(item)) {
+            decreaseQuality(item, 2);
+        }
+        if (isQualityIncreasedPerDayItem(item)) {
+            increaseQuality(item);
+        }
 
-            decreaseSellIn(item, 1);
+        decreaseSellIn(item, 1);
 
-            if (isExpired(item)) {
-                updateQualityOfExpiredSellInItem(item);
-            }
+        if (isExpired(item)) {
+            updateQualityOfExpiredSellInItem(item);
         }
     }
 
